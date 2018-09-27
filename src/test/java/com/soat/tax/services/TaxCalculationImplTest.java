@@ -4,8 +4,10 @@ import com.soat.tax.company.AutoCompany;
 import com.soat.tax.company.Company;
 import com.soat.tax.company.SASCompany;
 import com.soat.tax.exceptions.IllegalSalesRevenueException;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TaxCalculationImplTest {
 
@@ -17,7 +19,7 @@ public class TaxCalculationImplTest {
         TaxCalculation t = new TaxCalculationImpl();
         float tax = t.calculateTax(autoCompany, 1000f);
         // then
-        Assert.assertEquals(250f, tax, 0);
+        assertEquals(250f, tax, 0);
     }
 
     @Test
@@ -28,7 +30,8 @@ public class TaxCalculationImplTest {
         TaxCalculation t = new TaxCalculationImpl();
         float tax = t.calculateTax(sasCompany, 1000f);
         // then
-        Assert.assertEquals(330f, tax, 0);
+        assertEquals(330f, tax, 0);
+
     }
 
     @Test(expected = IllegalSalesRevenueException.class)
@@ -45,7 +48,7 @@ public class TaxCalculationImplTest {
         try {
             t.calculateTax(autoCompany, 1000f);
         } catch (Exception e) {
-            Assert.assertTrue(e instanceof IllegalArgumentException);
+            assertTrue(e instanceof IllegalArgumentException);
         }
     }
 }
